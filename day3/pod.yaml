@@ -1,16 +1,18 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: volume-example-1
+  name: hostpath-example-1
 spec:
   containers:
-  - name: app-container-1
+  - name: hostpath-container-1
     image: nginx
     ports:
     - containerPort: 80 # Specify the container's port
     volumeMounts:
     - mountPath: /usr/share/nginx/html
-      name: html-volume
+      name: shared-volume
   volumes:
-  - name: html-volume
-    emptyDir: {}
+  - name: shared-volume
+    hostPath:
+      path: /vijay/html
+      type: Directory
